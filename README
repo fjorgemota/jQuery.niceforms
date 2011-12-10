@@ -4,9 +4,15 @@ jQuery NiceForms
 Introduction
 ---------------------------
 
-The jQuery NiceForms is a adaptation created by [Fernando Jorge Mota](http://about.me/fjorgemota/) of the original NiceForms 2.0, created by [Lucian Slatineanu](http://www.emblematiq.com/projects/niceforms/). The use is now provided by jQuery, with a simple API as showed in file demo.html.
+The jQuery NiceForms is a adaptation created by [Fernando Jorge Mota](http://about.me/fjorgemota/) of the original NiceForms 2.0, created by [Lucian Slatineanu](http://www.emblematiq.com/projects/niceforms/). The use is now provided by jQuery, with a simple API as showed in file [demo.html](http://dl.dropbox.com/u/17820466/jQuery.niceforms/demo.html).
 
 Good use!
+
+Demo
+---------------------------
+
+[It's here](http://dl.dropbox.com/u/17820466/jQuery.niceforms/demo.html).
+
 
 Bugs 
 ---------------------------
