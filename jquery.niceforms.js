@@ -462,8 +462,8 @@ jQuery(function(){
 									return;
 								}
 								$(this).data("niceformenabled",true);
-								if($(this).prev().length>0) {var where = $(this).prev();console.log('1');}
-								else {var where = $(":first",top);console.log('2');}
+								if($(this).prev().length>0) {var where = $(this).prev();}
+								else {var where = $(":first",top);}
 								$(this).css({
 									"width":d["width"],
 									"height":d["height"]
@@ -478,7 +478,6 @@ jQuery(function(){
 							},
 							"nfstop":function(){
 								var d = $(this).data();
-								console.log(d);
 								if(!d["niceformenabled"]){
 									return;
 								}
