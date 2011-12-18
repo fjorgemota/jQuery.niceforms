@@ -488,7 +488,7 @@ jQuery(function(){
 					return $(nf);
 				}
 			//Separate and assign elements
-			$("input,button,textarea,select").each(function(){
+			$("input,button,textarea,select",nf).each(function(){
 				var i = $(nf).data("niceforms-elements")||[];
 				i.push(this);
 				$(nf).data("niceforms-elements",i);
