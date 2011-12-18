@@ -37,19 +37,7 @@ jQuery(function(){
 			$(this).niceforms().stop().niceforms().start();
 		});
 	});
-	$.fn.niceforms = function(){
-		var nf = this;
-		return {
-			"start":function() {
-				if($(nf).data("niceforms-elements")){
-					return $(nf);
-				}
-			//Separate and assign elements
-			$("input,button,textarea,select").each(function(){
-				var i = $(nf).data("niceforms-elements")||[];
-				i.push(this);
-				$(nf).data("niceforms-elements",i);
-				var f = {
+	var niceforms_functions = {
 					"text,password":function(){
 						$(this).data({
 							"oldClassName":$(this).attr("class")||"",
@@ -491,10 +479,22 @@ jQuery(function(){
 						});
 						}
 					}
+				};
+	$.fn.niceforms = function(){
+		var nf = this;
+		return {
+			"start":function() {
+				if($(nf).data("niceforms-elements")){
+					return $(nf);
 				}
-				for(var k in f){
+			//Separate and assign elements
+			$("input,button,textarea,select").each(function(){
+				var i = $(nf).data("niceforms-elements")||[];
+				i.push(this);
+				$(nf).data("niceforms-elements",i);
+				for(var k in niceforms_functions){
 					if(k.match($(this).attr("type")||this.nodeName.toLowerCase())){
-						f[k].apply(this,[]);
+						niceforms_functions[k].apply(this,[]);
 						break;
 					}
 				}
