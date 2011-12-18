@@ -65,12 +65,20 @@ jQuery(function(){
 							},
 							"nfstart":function(){
 								var d = $(this).data();
+								if(d["niceformenabled"]){
+									return;
+								}
+								$(this).data("niceformenabled",true);
 								$(this).removeClass(d["oldClassName"]).addClass("NFText").before(d["left"]).after(d["right"]);
 								d["right"].before(d["dummy"]);
 								d["dummy"].append(this);
 							},
 							"nfstop":function(){
-								var p = $(this).parent().parent();
+								var p = $(this).parent().parent(),d=$(this).data();
+								if(!d["niceformenabled"]){
+									return;
+								}
+								$(this).data("niceformenabled",false);
 								$(".NFTextLeft,.NFTextRight,.NFTextCenter",p).remove();
 								p.append($(this));
 								$(this).removeClass("NFText").addClass($(this).data("oldClassName"));
@@ -101,12 +109,19 @@ jQuery(function(){
 							},
 							"nfstart":function(){
 								var d = $(this).data();
+								if(d["niceformenabled"]){
+									return;
+								}
+								$(this).data("niceformenabled",true);
 								$(this).removeClass(d["oldClassName"]).addClass("NFhidden");
 								$(this).before(d["dummy"]);
 							},
 							"nfstop":function(){
 								var d = $(this).data();
-								
+								if(!d["niceformenabled"]){
+									return;
+								}
+								$(this).data("niceformenabled",false);
 								$(this).removeClass("NFhidden").addClass(d["oldClassName"]);
 								d["dummy"].remove();
 							}
@@ -122,7 +137,7 @@ jQuery(function(){
 							})
 						}).bind({
 							"click":function(){
-								$(this).data("dummy")[({true:"addClass",false:"removeClass"})[$(this).is(":checked")]]("NFh");
+								$(this).data("dummy")[$(this).is(":checked")?"addClass":"removeClass"]("NFh");
 							},
 							"focus":function(){
 								$(this).addClass("NFfocused");
@@ -132,10 +147,18 @@ jQuery(function(){
 							},
 							"nfstart":function(){
 								var d = $(this).data();
+								if(d["niceformenabled"]){
+									return;
+								}
+								$(this).data("niceformenabled",true);
 								$(this).removeClass(d["oldClassName"]).addClass("NFhidden").before(d["dummy"]);
 							},
 							"nfstop":function(){
 								var d = $(this).data();
+								if(!d["niceformenabled"]){
+									return;
+								}
+								$(this).data("niceformenabled",false);
 								$(this).removeClass("NFhidden").addClass(d["oldClassName"]);
 								d["dummy"].remove();
 							}
@@ -154,13 +177,21 @@ jQuery(function(){
 								$(this).removeClass("NFh").next(".NFButtonRight").removeClass("NFh").prev().prev(".NFButtonLeft").removeClass("NFh");
 							},
 							"nfstart":function(){
-								var d = $(this).data();			
+								var d = $(this).data();	
+								if(d["niceformenabled"]){
+									return;
+								}
+								$(this).data("niceformenabled",true);		
 								$(this).before(d["left"]);
 								$(this).after(d["right"]);
 								$(this).attr("class","NFButton");
 							},
 							"nfstop":function(){
 								var d = $(this).data();
+								if(!d["niceformenabled"]){
+									return;
+								}
+								$(this).data("niceformenabled",false);
 								$(this).removeClass("NFButton").addClass(d["oldClassName"]);
 								d["left"].remove();
 								d["right"].remove();
@@ -197,7 +228,11 @@ jQuery(function(){
 							},
 							"nfstart":function(){
 								var top = $(this).parent(),d= $(this).data();
-								if($(this).prev().length) {var where = $(this).prev();}
+								if(d["niceformenabled"]){
+									return;
+								}
+								$(this).data("niceformenabled",true);
+								if($(this).prev().length>0) {var where = $(this).prev();}
 								else {var where = $(":first",top);}
 								where.before(d["dummy"]);
 								d["dummy"].append(this);
@@ -210,6 +245,10 @@ jQuery(function(){
 							},
 							"nfstop":function(){
 								var d = $(this).data();
+								if(!d["niceformenabled"]){
+									return;
+								}
+								$(this).data("niceformenabled",false);
 								$(this).removeClass("NFhidden").addClass(d["oldClassName"]).parent().parent().append(this);
 								d["dummy"].remove();
 								
@@ -248,11 +287,15 @@ jQuery(function(){
 							},
 							"nfstart":function(){
 								var top = $(this).parent(),d = $(this).data();
+								if(d["niceformenabled"]){
+									return;
+								}
+								$(this).data("niceformenabled",true);
 								$(this).css({
 									"width":d["width"],
 									"height":d["height"]
 								}).removeClass(d["oldClassName"]).addClass("NFTextarea");
-								if($(this).prev().length) {var where =  $(this).prev();}
+								if($(this).prev().length>0) {var where =  $(this).prev();}
 								else {var where = $(":first",top);}
 								$(where).before(d["topRight"]);
 								d["topRight"].append(d["topLeft"]);
@@ -268,6 +311,10 @@ jQuery(function(){
 							},
 							"nfstop":function(){
 								var d = $(this).data();
+								if(!d["niceformenabled"]){
+									return;
+								}
+								$(this).data("niceformenabled",false);
 								$(this).parent().parent().append(this);
 								$(this).css({"width":"","height":""}).addClass(d["oldClassName"]).removeClass("NFTextarea");
 								;
@@ -337,6 +384,10 @@ jQuery(function(){
 									},
 								"nfstart":function(){
 									var d = $(this).data();
+									if(d["niceformenabled"]){
+										return;
+									}
+									$(this).data("niceformenabled",true);
 									d["right"].append(d["txt"]);
 									d["dummy"].append(d["left"]).append(d["right"]);
 									d["bg"].append(d["opt"]).appendTo(d["dummy"]);
@@ -366,6 +417,10 @@ jQuery(function(){
 								},
 							"nfstop":function(){
 								var d = $(this).data();
+								if(!d["niceformenabled"]){
+									return;
+								}
+								$(this).data("niceformenabled",false);
 								d["dummy"].remove();
 								$(this).parent().removeClass("NFhidden").addClass(d["oldClassName"]);
 							}
@@ -403,8 +458,12 @@ jQuery(function(){
 							},
 							"nfstart":function(){
 								var top = $(this).parent(),d = $(this).data();
-								if($(this).prev().length) {var where = $(this).prev();}
-								else {var where = $(":first",top);}
+								if(d["niceformenabled"]){
+									return;
+								}
+								$(this).data("niceformenabled",true);
+								if($(this).prev().length>0) {var where = $(this).prev();console.log('1');}
+								else {var where = $(":first",top);console.log('2');}
 								$(this).css({
 									"width":d["width"],
 									"height":d["height"]
@@ -415,11 +474,15 @@ jQuery(function(){
 								$(where).before(d["bottomRight"]);
 								d["topRight"].css("width",d["width"]).append(d["topLeft"]);
 								d["bottomRight"].append(d["bottomLeft"]);
-								d["right"].css("height",d["height"]).append(d["left"].css("height",d["height"]));
-								d["right"].append($(this));
+								d["right"].css("height",d["height"]).append(d["left"].css("height",d["height"])).append($(this));
 							},
 							"nfstop":function(){
 								var d = $(this).data();
+								console.log(d);
+								if(!d["niceformenabled"]){
+									return;
+								}
+								$(this).data("niceformenabled",false);
 								$(this).parent().parent().append(this);
 								d["topRight"].remove();
 								d["bottomRight"].remove();
@@ -441,6 +504,7 @@ jQuery(function(){
 			},
 			"stop":function(){
 				$($(nf).data("niceforms-elements")||[]).trigger("nfstop");
+				$(nf).data("niceforms-elements",null);
 				return $(nf);
 			}
 		}
