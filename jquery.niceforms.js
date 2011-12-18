@@ -494,7 +494,7 @@ jQuery(function(){
 					}
 				}
 				for(var k in f){
-					if(k.split(",").indexOf($(this).attr("type")||this.nodeName.toLowerCase())!= -1){
+					if(k.match($(this).attr("type")||this.nodeName.toLowerCase())){
 						f[k].apply(this,[]);
 						break;
 					}
